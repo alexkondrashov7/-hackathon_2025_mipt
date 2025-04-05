@@ -129,35 +129,44 @@ def save_churn_plot(rfm_data, filename='plots/churn_risk_distribution.png'):
     try:
         # Создаем директорию если нужно
         os.makedirs(os.path.dirname(filename), exist_ok=True)
-
+        
         plt.figure(figsize=(12, 6))
+        
+        # Используем фактические метки из данных
+        plot_order = ['3_high', '2_medium', '1_low']
+        palette = {'3_high': 'red', '2_medium': 'orange', '1_low': 'green'}
+        
         ax = sns.countplot(
-            x='Churn_Risk',
+            x='Churn_Risk', 
             data=rfm_data,
-            order=['Высокий риск', 'Средний риск', 'Низкий риск'],
-            palette={'Высокий риск': 'red',
-                     'Средний риск': 'orange', 'Низкий риск': 'green'}
+            order=plot_order,
+            palette=palette
         )
-
+        
         # Добавляем аннотации
         for p in ax.patches:
-            ax.annotate(f'{p.get_height():.0f}',
-                        (p.get_x() + p.get_width() / 2., p.get_height()),
-                        ha='center',
-                        va='center',
-                        xytext=(0, 5),
+            ax.annotate(f'{p.get_height():.0f}', 
+                        (p.get_x() + p.get_width() / 2., p.get_height()), 
+                        ha='center', 
+                        va='center', 
+                        xytext=(0, 5), 
                         textcoords='offset points')
 
+        # Русские подписи для визуализации
         plt.title('Распределение клиентов по риску оттока')
         plt.xlabel('Категория риска')
         plt.ylabel('Количество клиентов')
-        plt.xticks(rotation=45)
-
+        plt.xticks(
+            ticks=range(len(plot_order)), 
+            labels=['Высокий риск', 'Средний риск', 'Низкий риск'],
+            rotation=45
+        )
+        
         # Сохраняем и закрываем график
         plt.savefig(filename, dpi=300, bbox_inches='tight')
         plt.close()
         print(f'График сохранен в {filename}')
-
+        
     except Exception as e:
         print(f'Ошибка при сохранении графика: {str(e)}')
 
