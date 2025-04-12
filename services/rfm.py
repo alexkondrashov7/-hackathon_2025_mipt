@@ -10,35 +10,41 @@ warnings.filterwarnings("ignore")
 
 # Загрузка данных (в будущем этот и следующий шаг можно заменить на выгрузку sql)
 def load_data():
-    customers = pd.read_csv("../research/clean_data/customers.csv")
-    geolocation = pd.read_csv("../research/clean_data/geolocation.csv")
-    order_pay = pd.read_csv("../research/clean_data/order_payments.csv")
-    reviews = pd.read_csv("../research/clean_data/order_reviews.csv")
-    orders = pd.read_csv("../research/clean_data/orders.csv")
-    item = pd.read_csv("../research/clean_data/orders_items.csv")
-    category_name = pd.read_csv(
-        "../research/clean_data/product_category_name_translation.csv")
-    products = pd.read_csv("../research/clean_data/products.csv")
-    sellers = pd.read_csv("../research/clean_data/sellers.csv")
-    return customers, geolocation, order_pay, reviews, orders, item, category_name, products, sellers
+    """Загрузка всех исходных данных"""
+    data_path = "../research/clean_data/"
+    return {
+        'customers': pd.read_csv(f"{data_path}customers.csv"),
+        'geolocation': pd.read_csv(f"{data_path}geolocation.csv"),
+        'payments': pd.read_csv(f"{data_path}order_payments.csv"),
+        'reviews': pd.read_csv(f"{data_path}order_reviews.csv"),
+        'orders': pd.read_csv(f"{data_path}orders.csv"),
+        'items': pd.read_csv(f"{data_path}orders_items.csv"),
+        'products': pd.read_csv(f"{data_path}products.csv"),
+        'sellers': pd.read_csv(f"{data_path}sellers.csv"),
+        'category_translation': pd.read_csv(f"{data_path}product_category_name_translation.csv")
+    }
 
 
 # Объединение данных
-def merge_data(orders, item, order_pay, reviews, products, customers, sellers, category_name):
-    df = orders.merge(item, on='order_id', how='left')
-    df = df.merge(order_pay, on='order_id', how='outer', validate='m:m')
-    df = df.merge(reviews, on='order_id', how='outer')
-    df = df.merge(products, on='product_id', how='outer')
-    df = df.merge(customers, on='customer_id', how='outer')
-    df = df.merge(sellers, on='seller_id', how='outer')
-    df = df.merge(category_name, on="product_category_name", how="left")
+def merge_data(data):
+    """Объединение данных в единый датафрейм"""
+    df = data['orders'].merge(data['items'], on='order_id', how='left')
+    df = df.merge(data['payments'], on='order_id', how='outer')
+    df = df.merge(data['reviews'], on='order_id', how='outer')
+    df = df.merge(data['products'], on='product_id', how='outer')
+    df = df.merge(data['customers'], on='customer_id', how='outer')
+    df = df.merge(data['sellers'], on='seller_id', how='outer')
+    return df.merge(data['category_translation'],
+                    on='product_category_name',
+                    how='left')
+
+
+def preprocess_data(df):
+    """Очистка и первичная обработка данных"""
+    df = df[~df['customer_unique_id'].isna()].dropna()
+    df['order_purchase_timestamp'] = pd.to_datetime(df['order_purchase_timestamp'])
     return df
-
-# Очистка данных: удаление строк без customer_unique_id
-
-
-def filter_customers(df):
-    return df[~df["customer_unique_id"].isna()]
+    # return df[~df["customer_unique_id"].isna()]
 
 
 def calculate_rfm(df):
@@ -123,33 +129,32 @@ def add_rfm_segments(rfm_data):
     )
     return rfm_data
 
-
 def save_churn_plot(rfm_data, filename='plots/churn_risk_distribution.png'):
     """Сохранение графика распределения рисков оттока"""
     try:
         # Создаем директорию если нужно
         os.makedirs(os.path.dirname(filename), exist_ok=True)
-        
+
         plt.figure(figsize=(12, 6))
-        
+
         # Используем фактические метки из данных
         plot_order = ['3_high', '2_medium', '1_low']
         palette = {'3_high': 'red', '2_medium': 'orange', '1_low': 'green'}
-        
+
         ax = sns.countplot(
-            x='Churn_Risk', 
+            x='Churn_Risk',
             data=rfm_data,
             order=plot_order,
             palette=palette
         )
-        
+
         # Добавляем аннотации
         for p in ax.patches:
-            ax.annotate(f'{p.get_height():.0f}', 
-                        (p.get_x() + p.get_width() / 2., p.get_height()), 
-                        ha='center', 
-                        va='center', 
-                        xytext=(0, 5), 
+            ax.annotate(f'{p.get_height():.0f}',
+                        (p.get_x() + p.get_width() / 2., p.get_height()),
+                        ha='center',
+                        va='center',
+                        xytext=(0, 5),
                         textcoords='offset points')
 
         # Русские подписи для визуализации
@@ -157,70 +162,63 @@ def save_churn_plot(rfm_data, filename='plots/churn_risk_distribution.png'):
         plt.xlabel('Категория риска')
         plt.ylabel('Количество клиентов')
         plt.xticks(
-            ticks=range(len(plot_order)), 
+            ticks=range(len(plot_order)),
             labels=['Высокий риск', 'Средний риск', 'Низкий риск'],
             rotation=45
         )
-        
+
         # Сохраняем и закрываем график
         plt.savefig(filename, dpi=300, bbox_inches='tight')
         plt.close()
         print(f'График сохранен в {filename}')
-        
+
     except Exception as e:
         print(f'Ошибка при сохранении графика: {str(e)}')
 
-def save_labels(label_data, filename='labels/labels.csv'):
+
+def save_labels(label_data, filename='labels/labels.json'):
     try:
         # Создаем директорию если нужно
         os.makedirs(os.path.dirname(filename), exist_ok=True)
-        label_data.to_csv(filename, index=False)
-        
+        label_data.to_json(filename, index=False)
+
     except Exception as e:
         print(f'Ошибка при сохранении лэйблов: {str(e)}')
     pass
 
+
 def main_pipeline():
     """Главный конвейер обработки данных"""
     # Шаг 1: Загрузка данных
-    customers, geolocation, order_pay, reviews, orders, item, category_name, products, sellers = load_data()
+    data = load_data()
 
     # Шаг 2: Объединение данных
-    df = merge_data(orders, item, order_pay, reviews, products,
-                    customers, sellers, category_name)
+    df = merge_data(data)
 
     # Шаг 3: Фильтрация пропусков
-    data = filter_customers(df)
+    data = preprocess_data(df)
 
     # Шаг 4: Расчет rfm
     rfm_raw = calculate_rfm(data)
 
     # Шаг 5: Объединение данных
     rfm_segment = add_rfm_segments(rfm_raw)
-    
+
     # Шаг 6: Сохраняем график для дашборда
-    save_churn_plot(rfm_segment, 'results/plots/churn_distribution.png')
-    
+    save_churn_plot(rfm_segment, 'results/plots/churn_distribution_rfm.png')
+
     # Шаг 7: Вычленяем лэйблы для классификации
     label_data = rfm_segment.copy()[['customer_unique_id', 'Churn_Risk']]
     risk_mapping = {'3_high': 3, '2_medium': 2, '1_low': 1}
     label_data['Churn_Risk'] = label_data['Churn_Risk'].map(risk_mapping)
-    
+
     # Шаг 8: Сохранение лэйблов для обучения классификатора
-    save_labels(label_data,'results/labels/labels.csv')
+    save_labels(label_data, 'results/labels/labels.json')
 
     return rfm_segment, label_data
 
 
 # Запуск пайплайна и вывод результатов
 if __name__ == "__main__":
-    rfm_result, label_data  = main_pipeline()
-
-    print("\nПример данных:")
-    display(rfm_result.head(3))
-
-    print("\nРаспределение классов:")
-    print(label_data['Churn_Risk'].value_counts(normalize=True).sort_index())
-
-    print("\nПервые 5 записей для классификатора:")
-    display(label_data.head())
+    rfm_result, label_data = main_pipeline()
+    print("Job is done!")
