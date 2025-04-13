@@ -1,7 +1,7 @@
 # Классификатор оттока клиентов на основе активности.
 
 
-Данный проект представляет собой классификатор ...
+Данный проект представляет собой классификатор для определения класса клиента для вычленения из общего массива клиентской базы ключевых секторов на которые необходимо произвести маркетинговое воздействие для уменьшения вероятности оттока. Файл ридми заполняется в черновом формате, ведется логирование основных этапов проработки задачи.
 
 ## Содержание
 
@@ -50,8 +50,13 @@
 
 1. Были проведены исследования по МЛ кластеризации объектов(https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/clusterisation.ipynb) и RFM-сегментации(https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/rfm.ipynb)
 
-2. На основе исследований были созданы микросервисы для разметки первичных данных kmeans-лэйблы(https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/rfm.ipynb) и RFM-лэйблы(https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/services/rfm.py)
+2. Были произведены продуктовые исследования (https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/rostelecom_ipynb.ipynb) данных для формирования первичных гипотез (https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/Rostelecom_Гипотезы%20по%20данным.xlsx).
 
+3. На основе исследований были созданы микросервисы для разметки первичных данных kmeans-лэйблы(https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/rfm.ipynb) и RFM-лэйблы(https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/services/rfm.py).
+
+4. Следующим этапом планиурется обучение классификатора на размеченных данных и интеграция в сервис-инференса, так же планируется создание БД на модельных данных для упрощения работы сервиса.
+
+5. Для бэкэнд составляющей было создано базовое приложение (https://github.com/OIJTUMUCT/inference_service/tree/main), в персперктиве приложение отвечает за инференс модели.
 
 
 :arrow_up:[К содержанию](README.md#Содержание)
