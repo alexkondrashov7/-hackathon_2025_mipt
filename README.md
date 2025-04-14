@@ -64,7 +64,7 @@ RFM-кластеризация
 <img src = https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/labels/rfm_chart.png>
 
 KMeans
-<img src = https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/labels/kmeans_chart.png)>
+<img src = https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/labels/kmeans_chart.png>
 
 
 2. Были произведены продуктовые исследования (https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/rostelecom_ipynb.ipynb) данных для формирования первичных гипотез (https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/Rostelecom_Гипотезы%20по%20данным.xlsx).
