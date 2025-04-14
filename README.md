@@ -32,6 +32,8 @@
 
 Первичный датасет состоит из нормализованных табличных данных описывающих транзакционную, поведеньческую, геолакационную и временную сущности клиентов онлайн-магазина.
 
+<img src = https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/schema_data.png>
+
 Для работы была произведена денормализация и feature-инжиниринг для создания комбинированного и/или латентного признакового пространства для парраллельной кластерицации методами RFM-анализа и KMeans-кластеризации.
 
 
@@ -59,10 +61,10 @@
 
 В обоих случаях ли выявлены определенные пересечения в кластеризации:
 RFM-кластеризация
-(https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/labels/rfm_chart.png)
+<img src = https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/labels/rfm_chart.png>
 
 KMeans
-(https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/labels/kmeans_chart.png)
+<img src = https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/labels/kmeans_chart.png)>
 
 
 2. Были произведены продуктовые исследования (https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/rostelecom_ipynb.ipynb) данных для формирования первичных гипотез (https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/Rostelecom_Гипотезы%20по%20данным.xlsx).
