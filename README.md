@@ -78,7 +78,7 @@
  - Потенциально лояльные клиенты
  - Разовые клиенты
 
-<img src = none>
+<img src = https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/labels/combo_chart.png>
 
 На основе этой кластеризации формируется следующий этап дополнения разметкой основного датасета и обучение интерпретируемого классификатора.
 
