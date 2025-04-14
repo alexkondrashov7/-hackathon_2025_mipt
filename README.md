@@ -226,15 +226,15 @@
 Фокус на доставку и географию, так как они заметно влияют на оценки и повторные заказы; 
 
 
-<img src = 1>
+<img src = https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/product/1.png>
 
 Использование данных о времени активности пользователей при построении маркетинговых коммуникаций и push-стратегий;
 
-<img src = 2>
+<img src = https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/product/2.png>
 
 Скептически относиться к описаниям и фотографиям - они важны, но на конверсии почти не влияют; 
 
-<img src = 3>
+<img src = https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/product/3.png>
 
 
 
