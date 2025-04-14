@@ -60,11 +60,18 @@
 1. Были проведены исследования по МЛ кластеризации объектов(https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/clusterisation.ipynb) и RFM-сегментации(https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/rfm.ipynb).
 
 В обоих случаях ли выявлены определенные пересечения в кластеризации:
-RFM-кластеризация
+
+#### RFM-кластеризация
 <img src = https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/labels/rfm_chart.png>
 
-KMeans
+Выбор колличества кластеров обусловлен методологией
+
+#### KMeans
 <img src = https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/labels/kmeans_chart.png>
+
+Выбор колличества кластеров был обусловлен паритетом между силуэтом и инерцией
+
+<img src =https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/labels/kmeans_chart_силуэт.png>
 
 
 2. Были произведены продуктовые исследования (https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/rostelecom_ipynb.ipynb) данных для формирования первичных гипотез (https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/Rostelecom_Гипотезы%20по%20данным.xlsx).
