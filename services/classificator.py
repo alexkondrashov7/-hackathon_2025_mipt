@@ -8,9 +8,9 @@ import seaborn as sns
 import warnings
 warnings.filterwarnings("ignore")
 
+
+
 # Загрузка данных
-
-
 def load_data():
     customers = pd.read_csv("../research/clean_data/customers.csv")
     geolocation = pd.read_csv("../research/clean_data/geolocation.csv")
@@ -52,12 +52,11 @@ def main_pipeline():
     df = merge_data(orders, item, order_pay, reviews, products,
                     customers, sellers, category_name)
     df = filter_customers(df)
+    
+    city_zip = geolocation.groupby(["geolocation_city", "geolocation_zip_code_prefix"])[
+    ["geolocation_lat", "geolocation_lng"]].mean().reset_index()
 
-    geo_data = geolocation.merge(
-        customers, left_on="geolocation_zip_code_prefix", right_on="customer_zip_code_prefix")
-
-    geo_result = geo_data[["customer_unique_id",
-                           "geolocation_lat", "geolocation_lng"]]
+    geo_result = city_zip
 
     return df, geo_result
 
@@ -170,9 +169,19 @@ def save_to_json(data, filename):
 # Основная функция
 if __name__ == "__main__":
     data, geo_data = main_pipeline()
+    geo_data.drop_duplicates(inplace=True)
     processed_data = process_data(data)
 
-    result_raw = processed_data.merge(geo_data, on="customer_unique_id")
+
+    lat_long = data.merge(geo_data, left_on="customer_zip_code_prefix",
+           right_on="geolocation_zip_code_prefix", how="left")
+
+    lat_long = lat_long[["customer_unique_id", "geolocation_lat", "geolocation_lng"]]
+    lat_long = lat_long.groupby(["customer_unique_id"])[["geolocation_lat", "geolocation_lng"]].mean().reset_index()
+
+    result_raw = processed_data.merge(lat_long, on="customer_unique_id", how="left")
+    
+    result_raw.drop_duplicates(inplace=True)
     result = result_raw.drop(columns=["customer_unique_id"])
 
     save_to_json(result, './results/labels/customer_segments.json')
