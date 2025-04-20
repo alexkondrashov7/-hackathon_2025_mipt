@@ -248,7 +248,7 @@
 
 
 ### Контрибьюторы
-- Анна Назаренко - []()
+- Анна Назаренко - [unearthlypresence01](https://github.com/unearthlypresence01)
 - Иоанн Лебедев - [OIJTUMUCT](https://github.com/OIJTUMUCT)
 - Кузнецов Кирилл - [hotdonkey](https://github.com/hotdonkey)
 
