@@ -1,4 +1,4 @@
-# Сервис по кластеризации и классификации клиентов на основе активности
+# Сервис по кластеризации и классификации клиентов на RFM_ABC_XYZ анализа с когортной компонентной.
 
 Данный проект направлен на снижение вероятности оттока клиентов за счёт выявления ключевых групп в клиентской базе и последующего таргетированного маркетингового воздействия. Однако стоит отметить, что результаты классификации не оправдали ожиданий из-за неподтвердившихся гипотез и некорректной разметки на основе кластеризации. Поэтому в дальнейшем весь анализ будет проводиться в контуре RFM+ABC+XYZ анализа клиентов.
 
@@ -41,13 +41,19 @@
 
 ### Примеры
 
-<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/labels/kmeans_chart_силуэт.png">
+<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/examples/photo_2025-04-20_17-21-59.jpg">
 
-<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/labels/kmeans_chart_силуэт.png">
+<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/examples/photo_2025-04-20_17-22-06.jpg">
 
-<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/labels/kmeans_chart_силуэт.png">
+<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/examples/photo_2025-04-20_17-22-09.jpg">
 
-<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/labels/kmeans_chart_силуэт.png">
+<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/examples/photo_2025-04-20_17-22-16.jpg">
+
+<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/examples/photo_2025-04-20_17-22-16.jpg">
+
+<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/services/results/plots/churn_risk_by_time_via_Churn_Risk.png">
+
+<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/services/results/plots/churn_risk_by_time_via_segment_description.png">
 
 
 ### Как работает
@@ -92,6 +98,12 @@
    Цель анализа заключалась в формировании и проверке продуктовых гипотез, способных выявить скрытые закономерности, влияющие на покупки, оценки и потенциальный отток пользователей. Гипотезы формировались на основании здравых предположений о логике поведения пользователей и затем проверялись статистически. 
 
    Наиболее выраженное влияние на ключевые пользовательские метрики (частота заказов, повторные покупки, оценки) оказали время доставки, географические характеристики (как покупателей, так и продавцов), тип оплаты, а также временные факторы (день недели, время суток).
+
+5. Классификаторы показатели плохую обобщающу способность на разных архитектурах ([Jupyter Notebook](https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/classificator.ipynb)) и было решено уйти в аналитическую ветку.
+
+6. Было произведено исследование в рамках RFM_XYZ_ABC анализа ([Jupyter Notebook](https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/rfm_abc_xyz.ipynb))
+
+7. На основе пердыдущего пункта было сформированно исследование в разрезе временного распределения ([Jupyter Notebook](https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/churn_rfm_time.ipynb))
 
 ---
 # В результате анализа были выдвинуты следующие гипотезы:
@@ -217,6 +229,17 @@
 
 Результатом проведенной работы служит сервис визуализации в разрезе произведенной RFM и когортной кластеризации пользователей на карте региона.
 
+Первичные гипотезы по синтетической разметке не подтвердились посему был произведен поворот в сторону аналитики.
+
+### RFM-анализ
+<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/services/results/plots/churn_risk_distribution.png">
+
+<img src="hhttps://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/services/results/plots/churn_risk_by_time_via_segment_description.png">
+
+### Когортный анализ
+
+<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/services/results/plots/cohort/cohort_unique_users.png">
+
 :arrow_up: [К содержанию](#содержание)
 
 ### Дальнейшее развитие
@@ -225,7 +248,9 @@
 
 
 ### Контрибьюторы
+- Анна Назаренко - []()
+- Иоанн Лебедев - [OIJTUMUCT](https://github.com/OIJTUMUCT)
+- Кузнецов Кирилл - [hotdonkey](https://github.com/hotdonkey)
 
-(Требуется добавить список контрибьюторов проекта)
 
 :arrow_up: [К содержанию](#содержание)
