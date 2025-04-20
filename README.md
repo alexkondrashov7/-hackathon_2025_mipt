@@ -238,7 +238,9 @@
 
 ### Когортный анализ
 
-<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/services/results/plots/cohort/cohort_unique_users.png">
+<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/examples/photo_2025-04-20_18-46-08.jpg">
+
+<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/examples/photo_2025-04-20_18-46-12.jpg">
 
 :arrow_up: [К содержанию](#содержание)
 
