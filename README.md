@@ -48,6 +48,8 @@
 ---
 ### EDA
 
+([Jupyter Notebook](https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/eda.ipynb))
+
 #### Можно наблюдать длинный правый хвост распределения, что естественно приводит распределение к форме близкой к нормальной в случае логарифмирования признака, т.н. логнормальное распределение цены.
 
 <img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/eda/price_distr.png">
