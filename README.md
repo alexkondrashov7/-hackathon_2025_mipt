@@ -44,17 +44,17 @@
 
 #### Можно наблюдать длинный правый хвост распределения, что естественно приводит распределение к форме близкой к нормальной в случае логарифмирования признака, т.н. логнормальное распределение цены.
 
-<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/examples/photo_2025-04-20_17-21-59.jpg">
+<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/eda/price_distr.png">
 
 ---
 #### Основная часть покупок производится путем оплаты с кредитной карты, на втором месте стоит оплата инвойсами - B2B сегмент
 
-<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/examples/photo_2025-04-20_17-21-59.jpg">
+<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/eda/payment_type_distr.png">
 
 ---
 #### Можно наблюдать пересечение по модальному региона как у продавцов так и у покупателей, но при этом можно предположить наличие логистических проблем-задержек доставки для регионов покупателей PR, MG, RJ.
 
-<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/examples/photo_2025-04-20_17-21-59.jpg">
+<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/eda/region_distr.png">
 
 ---
 #### Мультимодальное распределение явно прослеживаются ключевые группы товаров, пользующиеся спросом:
@@ -69,17 +69,17 @@
 
 #### Что говоорит о том, что мы имеем дело со стандартным маркетплейсом.
 
-<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/examples/photo_2025-04-20_17-21-59.jpg">
+<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/eda/product_category_distr.png">
 
 ---
 #### Можно отметить положительную динамику прироста продаж
 
-<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/examples/photo_2025-04-20_17-21-59.jpg">
+<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/eda/purchase_dynamic.png">
 
 ---
 #### По больлшей части покупатели остаются довольными приобретенными товарами
 
-<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/examples/photo_2025-04-20_17-21-59.jpg">
+<img src="https://github.com/alexkondrashov7/-hackathon_2025_mipt/blob/main/research/eda/review_score_distr.png">
 
 
 :arrow_up: [К содержанию](#содержание)
